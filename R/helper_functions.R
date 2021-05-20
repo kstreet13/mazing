@@ -105,8 +105,7 @@ fill_maze <- function(maze, start = NULL){
 
 
 # convert to thick-walled
-
-toThick <- function(m){
+to_thick <- function(m){
     m2 <- matrix(NA, 2*nrow(m)+1, 2*ncol(m)+1)
     m2[,1] <- m2[,ncol(m2)] <- -5
     m2[1,] <- m2[nrow(m2),] <- -5
@@ -177,57 +176,4 @@ seep <- function(m, what = 1){
 
 
 
-
-# paths
-# not built for matrix mazes (yet)
-solvemaze <- function(maze, start=NULL, end=NULL){
-    if(is.null(start)){
-        start <- c(NA,NA)
-        # left, bottom
-        start[2] <- which.max(apply(maze, 2, function(x) {any(x != -5)}))
-        start[1] <- which.max(maze[,start[2]] != -5)
-    }
-    if(is.null(end)){
-        end <- c(NA,NA)
-        # right, top
-        end[2] <- max(seq_len(ncol(maze))[apply(maze, 2, 
-                                                function(x) {any(x != -5)})] )
-        end[1] <- max(seq_len(nrow(maze))[maze[,end[2]] != -5])
-    }
-    # p1: start -> root
-    p1 <- start
-    parent <- previous(start, maze)
-    while(!anyNA(parent)){
-        p1 <- rbind(p1, parent)
-        parent <- previous(parent, maze)
-    }
-    p1.text <- paste(p1[,1], p1[,2])
-    end.text <- paste(end[1], end[2])
-    if(end.text %in% p1.text){
-        return(p1[1:which.max(p1.text==end.text), 2:1])
-    }
-    # p2: end -> root
-    p2 <- end
-    parent <- previous(end, maze)
-    while(!anyNA(parent)){
-        p2 <- rbind(p2, parent)
-        parent <- previous(parent, maze)
-    }
-    p2.text <- paste(p2[,1], p2[,2])
-    start.text <- paste(start[1], start[2])
-    if(start.text %in% p2.text){
-        return(p2[which.max(p2.text==start.text):1, 2:1])
-    }
-    while(p1.text[length(p1.text)] == p2.text[length(p2.text)]){
-        last <- p1.text[length(p1.text)]
-        p1.text <- p1.text[-length(p1.text)]
-        p2.text <- p2.text[-length(p2.text)]
-    }
-    path.text <- c(p1.text, last, rev(p2.text))
-    path <- t(vapply(path.text, function(x){
-        as.numeric(unlist(strsplit(x, split = ' ')))
-    }, c(1,1)))
-    rownames(path) <- NULL
-    return(path[,c(2,1)])
-}
 

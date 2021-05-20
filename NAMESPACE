@@ -3,5 +3,8 @@
 S3method(lines,maze)
 S3method(plot,maze)
 export(as.maze)
+export(find_maze_refpoint)
 export(maze)
+export(solve_maze)
 importFrom(graphics,lines)
+importFrom(stats,median)

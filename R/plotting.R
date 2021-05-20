@@ -41,7 +41,7 @@ plot.maze <- function(x, walls = FALSE, ...){
 #' @export
 lines.maze <- function(x, walls = FALSE, adjust = c(0,0), ...){
     if(walls){
-        MAZE <- toThick(x)
+        MAZE <- to_thick(x)
         for(i in 1:nrow(MAZE)){
             for(j in 1:ncol(MAZE)){
                 if(MAZE[i,j] == -5){

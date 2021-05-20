@@ -59,8 +59,3 @@ as.maze <- function(x){
 }
 
 
-
-mat <- cbind(matrix(1, 10,10), matrix(0, 10,10), matrix(1,10,10))
-m <- as.maze(mat)
-m2 <- as.maze(1-mat)
-
