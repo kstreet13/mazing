@@ -39,14 +39,12 @@ for(ii in 1:(nrow(mat)/2)){
 }
 # image(t(mat))
 
-# make it a maze (or two)
+# make it a maze
 m <- as.maze(mat)
 mat[abs((1:nrow(mat))-(nrow(mat)/2)) > nrow(mat)/4, ] <- 1
 m2 <- as.maze(1-mat)
 # solve it (top to bottom)
 p <- solve_maze(m, start = 'bottom', end = 'top')
-p1 <- solve_maze(m, start = 'mlefttop', end = 'mrighttop')
-p2 <- solve_maze(m, start = 'mleftbottom', end = 'mrightbottom')
 
 
 
