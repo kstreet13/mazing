@@ -52,9 +52,6 @@ is.maze <- function(x){
 #'   only those cells containing a 1 (the higher value).
 #' 
 #' @examples 
-#' mat <- matrix(NA, 10, 10)
-#' m <- as.maze(mat)
-#' 
 #' # circular maze
 #' mat <- matrix(1, 30, 30)
 #' for(i in 1:nrow(mat)){

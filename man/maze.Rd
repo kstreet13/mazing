@@ -43,9 +43,6 @@ is.maze(mat)
 m <- as.maze(mat)
 is.maze(mat)
 
-mat <- matrix(NA, 10, 10)
-m <- as.maze(mat)
-
 # circular maze
 mat <- matrix(1, 30, 30)
 for(i in 1:nrow(mat)){
