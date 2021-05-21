@@ -1,0 +1,15 @@
+
+library(hexSticker)
+s <- sticker(~plot(cars, cex=.5, cex.axis=.5, mgp=c(0,.3,0), xlab="", ylab=""),
+             package="hexSticker", p_size=20, s_x=.8, s_y=.6, s_width=1.4, s_height=1.2,
+             filename="~/Desktop/baseplot.png")
+
+
+s <- sticker(~1,package="hexSticker", p_size=20)
+
+
+hex <- ggplot() + geom_hexagon(size = 1.2, fill = 'darkgreen', 
+                               color = NA)
+hex <- hex + theme(panel.background = element_rect(fill='white', colour='white', 
+                                          color='white')) + coord_fixed()
+ggsave('~/Desktop/template.pdf', plot = hex, height = 6, width = 6)

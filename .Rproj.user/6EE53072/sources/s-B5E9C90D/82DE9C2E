@@ -1,0 +1,26 @@
+{
+    "id": "82DE9C2E",
+    "path": "~/Projects/mazing/R/helper_functions.R",
+    "project_path": "R/helper_functions.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1621560211964.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "190,1",
+        "scrollLine": "137"
+    },
+    "folds": "7|58|34|0|\n36|40|55|0|\n56|35|68|0|\n69|42|104|0|\n109|24|131|0|\n142|22|148|0|\n153|30|168|0|\n172|38|190|0|\n",
+    "lastKnownWriteTime": 1621563288,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1621563288821,
+    "read_only": false,
+    "read_only_alternatives": []
+}

@@ -1,0 +1,28 @@
+# R package: mazing
+
+<img src=inst/mazing.png height="200">
+
+This package provides utilities for generating and plotting random mazes. The mazes are based on matrices, so can only consist of vertical and horizontal lines along a regular grid. But there is no need to use every possible space, so they can take on many different shapes.
+
+## Installation
+```r
+# install.packages("devtools")
+devtools::install_github("kstreet13/mazing")
+```
+
+## Example
+```r
+library(mazing)
+mat <- matrix(rep(c(0,1,0), times=c(8,24,8)),
+              nrow = 24, ncol = 40, byrow = TRUE)
+mat[5,] <- 1
+m <- as.maze(mat)
+
+plot(m, walls = TRUE)
+```
+
+
+
+## Issues and bug reports
+
+Please use https://github.com/kstreet13/mazing/issues to submit issues, bug reports, and comments.
