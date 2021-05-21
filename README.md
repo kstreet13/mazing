@@ -15,15 +15,6 @@ every possible space, so they can take on many different shapes.
 devtools::install_github("kstreet13/mazing")
 ```
 
-    ##      checking for file ‘/private/var/folders/bs/ywxfn51s0d7cb61dk5r5ys1h0000gn/T/RtmpdsqEsd/remotes65979780914/kstreet13-mazing-5316aab/DESCRIPTION’ ...  ✓  checking for file ‘/private/var/folders/bs/ywxfn51s0d7cb61dk5r5ys1h0000gn/T/RtmpdsqEsd/remotes65979780914/kstreet13-mazing-5316aab/DESCRIPTION’ (361ms)
-    ##   ─  preparing ‘mazing’:
-    ##      checking DESCRIPTION meta-information ...  ✓  checking DESCRIPTION meta-information
-    ##   ─  checking for LF line-endings in source and make files and shell scripts
-    ##   ─  checking for empty or unneeded directories
-    ##   ─  building ‘mazing_0.1.tar.gz’
-    ##      
-    ## 
-
 ## Example
 
 ``` r
