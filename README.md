@@ -20,7 +20,7 @@ devtools::install_github("kstreet13/mazing")
 ``` r
 library(mazing)
 
-mat <- matrix(1, nrow = 19, ncol = 24)
+mat <- matrix(1, nrow = 19, ncol = 75)
 mat <- cbind(0,0,0,0,mat,0,0,0,0)
 mat[10,] <- 1
 
