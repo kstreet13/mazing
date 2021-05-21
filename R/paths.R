@@ -79,7 +79,7 @@ find_maze_refpoint <- function(point, maze){
                    (seq_len(ncol(maze)) - target[2])^2, FUN = "+")
         D[maze == -5] <- Inf
         ind <- which(D == min(D), arr.ind=TRUE)[1,]
-        return(ind)
+        return(ind[2:1])
     }
     # else
     if(point %in% c('mtopleft','mtop','mtopright')){
@@ -129,7 +129,7 @@ find_maze_refpoint <- function(point, maze){
         valid_cols <- which(maze[ind[1], ] != -5)
         ind[2] <- round(median(valid_cols))
     }
-    return(ind)
+    return(ind[2:1])
 }
 
 
@@ -169,8 +169,8 @@ solve_maze <- function(maze, start='bottomleft', end='topright'){
         stopifnot(length(end) == 2)
         stopifnot(maze[end[1],end[2]] != -5)
     }
-    if(is.character(start)){ start <- find_maze_refpoint(start, maze) }
-    if(is.character(end)){ end <- find_maze_refpoint(end, maze) }    
+    if(is.character(start)){ start <- find_maze_refpoint(start, maze)[2:1] }
+    if(is.character(end)){ end <- find_maze_refpoint(end, maze)[2:1] }    
     
     # p1: start -> root
     p1 <- matrix(start, ncol = 2)

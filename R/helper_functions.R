@@ -1,10 +1,10 @@
-
-
+#################
+### maze building
+#################
 # key:
 # 0 = origin, 1 = down, 2 = left, 3 = up, 4 = right
 # -1 = to be filled in
 # -5 = not to be filled in
-
 adjacent <- function(coords, maze, return.coords = FALSE){
     out.coords <- NULL
     val <- rep(NA, 4)
@@ -33,6 +33,7 @@ adjacent <- function(coords, maze, return.coords = FALSE){
     }
     return(val)
 }
+# only need this for plotting walls
 diag_adj_vals <- function(coords, maze){
     val <- rep(NA, 4)
     ul <- coords + c(1,-1)
@@ -103,8 +104,9 @@ fill_maze <- function(maze, start = NULL){
     return(maze)
 }
 
-
-# convert to thick-walled
+#################
+### convert to thick representation for plotting walls
+#################
 to_thick <- function(m){
     m2 <- matrix(NA, 2*nrow(m)+1, 2*ncol(m)+1)
     m2[,1] <- m2[,ncol(m2)] <- -5
@@ -130,7 +132,9 @@ to_thick <- function(m){
 }
 
 
-# maze manipulation
+#################
+### advanced maze manipulation
+#################
 expand <- function(m){
     m2 <- matrix(NA, nrow = 2*nrow(m), ncol = 2*ncol(m))
     for(i in 1:ncol(m)){

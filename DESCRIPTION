@@ -1,10 +1,18 @@
 Package: mazing
-Type: Package
 Title: Utilities for making and plotting mazes
 Version: 0.1
-Date: 2021-05-14
-Authors@R: person("Kelly", "Street", email = "street.kelly@gmail.com", role = c("aut", "cre"))
-Description: This package provides utilities for generating and plotting random mazes, based on matrices.
+Authors@R:
+    person(given = "Kelly", 
+           family = "Street", 
+           email = "street.kelly@gmail.com",
+           role = c("aut", "cre"), 
+           comment = "0000-0001-6379-5013")
+Description: This package provides utilities for generating and plotting random mazes. The mazes are based on matrices, so can only consist of vertical and horizontal lines along a regular grid. But there is no need to use every possible space, so they can take on many different shapes.
 License: MIT + file LICENSE
+Depends:
+    R (>= 4.0)
+Imports:
+    stats,
+    graphics
 RoxygenNote: 7.1.1
 BugReports: https://github.com/kstreet13/mazing/issues

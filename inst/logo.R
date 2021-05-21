@@ -2,6 +2,7 @@
 ### logo for the mazing hex sticker
 library(mazing)
 
+set.seed(1)
 # define text region
 mat <- matrix(c(
     1,0,1,1,1,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,1,0,0,1,0,0,1,1,0,1,1,1,0,0,0,1,1,
@@ -20,7 +21,7 @@ mat <- cbind(1,mat,1)
 # make it a hex
 # width = current width, center the text
 w <- ncol(mat)
-h <- ceiling(5.08 * w / 4.39)
+h <- floor(5.08 * w / 4.39)
 while(nrow(mat) < h - 1){
     mat <- rbind(1,mat,1)
 }
@@ -37,6 +38,8 @@ for(ii in 1:(nrow(mat)/2)){
         }
     }
 }
+# bit more padding
+mat <- rbind(0,mat,0)
 # image(t(mat))
 
 # make it a maze
@@ -53,16 +56,19 @@ p <- solve_maze(m, start = 'bottom', end = 'top')
 ##########
 
 # simple
-pdf(file = '~/Desktop/mazing_logo.pdf', width = 6, height = 6)
-red <- brewer.pal(9,'Set1')[1]
+#pdf(file = '~/Desktop/mazing_logo.pdf', width = 6, height = 6)
+red <- RColorBrewer::brewer.pal(9,'Set1')[1]
 plot(m)
 rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col =  "black")
 #rect(1, 12, 38, 34, col = 'black')
 lines(m, col = 'white', lwd=6, lend=2)
 lines(m, walls=TRUE, lwd=2, col='black', lend =2)
 lines(p, col = red, lwd = 1, lty = 3)
-points(rep(median(1:ncol(mat)),2), c(nrow(mat),1), col = red, cex=.6, pch = 16)
-dev.off()
+r <- find_maze_refpoint('top', m)
+points(r[1], r[2], col = red, cex=.6, pch = 16)
+r <- find_maze_refpoint('bottom', m)
+points(r[1], r[2], col = red, cex=.6, pch = 16)
+#dev.off()
 
 
 
