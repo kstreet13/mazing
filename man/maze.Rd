@@ -2,22 +2,59 @@
 % Please edit documentation in R/maze.R
 \name{maze}
 \alias{maze}
-\title{Generate a random maze}
+\alias{is.maze}
+\alias{as.maze}
+\title{Random Mazes}
 \usage{
 maze(nrow, ncol)
+
+is.maze(x)
+
+as.maze(x)
 }
 \arguments{
 \item{nrow}{Number of rows.}
 
 \item{ncol}{Number of columns.}
+
+\item{x}{A matrix-like object to be made into a maze (for \code{as.maze}), or
+an object to be identified as either a \code{maze} or not (for
+\code{is.maze})}
 }
 \value{
-An object of class \code{maze}, which is a subclass of \code{matrix}.
+For \code{maze} and \code{as.maze}, an object of class \code{maze}, which is
+a subclass of \code{matrix}.
+
+For \code{is.maze} a logical value indicating if the input is a valid
+\code{maze}.
 }
 \description{
-A function that produces a rectangular, procedurally generated random maze of
-a given size.
+Functions for producing and identifying procedurally generated random mazes.
+}
+\details{
+For \code{as.maze}, if \code{x} is a binary matrix (or otherwise
+  contains only two unique values), the maze will be constrained to occupy
+  only those cells containing a 1 (the higher value).
 }
 \examples{
 maze(10,10)
+mat <- matrix(NA, 10, 10)
+is.maze(mat)
+m <- as.maze(mat)
+is.maze(mat)
+
+mat <- matrix(NA, 10, 10)
+m <- as.maze(mat)
+
+# circular maze
+mat <- matrix(1, 30, 30)
+for(i in 1:nrow(mat)){
+    for(j in 1:ncol(mat)){
+        if((i-15.5)^2+(j-15.5)^2 > 220){
+            mat[i,j] <- 0
+        }
+    }
+}
+m <- as.maze(mat)
+
 }

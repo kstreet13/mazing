@@ -1,4 +1,3 @@
-
 #' @title Plot a maze object
 #' @name plot.maze
 #' 
@@ -33,7 +32,7 @@ plot.maze <- function(x, walls = FALSE, ...){
 }
 
 
-#' @describeIn plot.maze Add a maze to an existing plot.
+#' @rdname plot.maze
 #' @param adjust A vector by which to adjust the overall position of the maze.
 #'   Should be a numeric vector of length 2, indicating the \code{x} and
 #'   \code{y} adjustments, respectively.

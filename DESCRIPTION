@@ -12,7 +12,8 @@ License: MIT + file LICENSE
 Depends:
     R (>= 4.0)
 Imports:
-    stats,
-    graphics
+    graphics,
+    methods,
+    stats
 RoxygenNote: 7.1.1
 BugReports: https://github.com/kstreet13/mazing/issues

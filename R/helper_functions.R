@@ -167,9 +167,9 @@ seep <- function(m, what = 1){
     }
     return(m2)
 }
-# condense: this one's for making mazes from images (ie. PNG files). They might
-# be too big, so you can condense them by a factor of 2 and take the average
-# within each cell (previously 4 cells)
+# condense: this one's for making mazes from images (ie. PNG files via readPNG).
+# They might be too big, so you can condense them by a factor of 2 and take the
+# average within each cell (previously 4 cells)
 condense <- function(m, fun = median){
     odd.col <- (ncol(m) %% 2) == 1
     odd.row <- (nrow(m) %% 2) == 1

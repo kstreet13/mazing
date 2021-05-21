@@ -30,11 +30,6 @@ indices of the corresponding locations in the matrix representation. This
 means that the plot will appear to be flipped vertically relative to the
 matrix representation of the maze.
 }
-\section{Functions}{
-\itemize{
-\item \code{lines.maze}: Add a maze to an existing plot.
-}}
-
 \examples{
 m <- maze(10,10)
 plot(m, walls = TRUE)
