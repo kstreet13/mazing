@@ -31,7 +31,7 @@ p <- solve_maze(m, start = 'left', end = 'right')
 lines(p, col = 2, lwd = 3)
 ```
 
-![](README_files/figure-gfm/example-1.png)<!-- -->
+![](man/figures/README-example-1.png)<!-- -->
 
 ## Issues and bug reports
 
