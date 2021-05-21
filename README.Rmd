@@ -15,7 +15,7 @@ devtools::install_github("kstreet13/mazing")
 ```
 
 ## Example
-```{r, fig.width=5}
+```{r, fig.width=8}
 library(mazing)
 
 mat <- matrix(1, nrow = 19, ncol = 24)

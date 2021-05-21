@@ -12,8 +12,11 @@ every possible space, so they can take on many different shapes.
 
 ``` r
 # install.packages("devtools")
-# devtools::install_github("kstreet13/mazing")
+devtools::install_github("kstreet13/mazing")
 ```
+
+    ## Skipping install of 'mazing' from a github remote, the SHA1 (5906b229) has not changed since last install.
+    ##   Use `force = TRUE` to force installation
 
 ## Example
 
@@ -23,31 +26,15 @@ library(mazing)
 mat <- matrix(1, nrow = 19, ncol = 24)
 mat <- cbind(0,0,0,0,mat,0,0,0,0)
 mat[10,] <- 1
+
 m <- as.maze(mat)
-
 plot(m, walls = TRUE)
+
+p <- solve_maze(m, start = 'left', end = 'right')
+lines(p, col = 2, lwd = 3)
 ```
-
-    ## Warning in plot.window(...): "walls" is not a graphical parameter
-
-    ## Warning in plot.xy(xy, type, ...): "walls" is not a graphical parameter
-
-    ## Warning in axis(side = side, at = at, labels = labels, ...): "walls" is not a
-    ## graphical parameter
-
-    ## Warning in axis(side = side, at = at, labels = labels, ...): "walls" is not a
-    ## graphical parameter
-
-    ## Warning in box(...): "walls" is not a graphical parameter
-
-    ## Warning in title(...): "walls" is not a graphical parameter
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
-
-``` r
-#p <- solve_maze(m, start = 'left', end = 'right')
-#lines(p, col = 2, lwd = 3)
-```
 
 ## Issues and bug reports
 
