@@ -35,7 +35,7 @@ maze <- function(nrow, ncol){
 #' @importFrom methods is
 #' @export
 is.maze <- function(x){
-    if(is.matrix(x) && all(x %in% c(-5,-1:4))){
+    if(is.matrix(x) && is(x,'maze') && all(x %in% c(-5,-1:4))){
         return(TRUE)
     }
     return(FALSE)
