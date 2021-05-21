@@ -1,5 +1,5 @@
 .Rhistory
 .RData
-.Rproj
+*.Rproj
 .DS_Store
 .Rproj.user
