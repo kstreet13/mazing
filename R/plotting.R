@@ -40,14 +40,14 @@ plot.maze <- function(x, walls = FALSE, ...){
 #' @export
 lines.maze <- function(x, walls = FALSE, adjust = c(0,0), ...){
     if(walls){
-        MAZE <- to_binary(x)
+        MAZE <- maze2binary(x)
         for(i in 1:nrow(MAZE)){
             for(j in 1:ncol(MAZE)){
-                if(MAZE[i,j] == -5){
+                if(MAZE[i,j] == 0){
                     adj <- adjacent(c(i,j), MAZE)
                     vals <- adj[!is.na(adj)]
-                    if(any(! vals %in% c(0,-5))){
-                        draw <- which(adj == -5)
+                    if(any(vals != 0)){
+                        draw <- which(adj == 0)
                         for(dir in draw){
                             trgt <- switch(dir,
                                            '1' = c(i,j) + c(-1,0), # technically, the names are 
@@ -56,7 +56,7 @@ lines.maze <- function(x, walls = FALSE, adjust = c(0,0), ...){
                                            '4' = c(i,j) + c(0,1))  # position, not name
                             tadj <- c(adjacent(trgt, MAZE), diag_adj_vals(trgt, MAZE))
                             tvals <- tadj[!is.na(tadj)]
-                            if(any(! tvals %in% c(0,-5))){
+                            if(any(tvals != 0)){
                                 lines(c(j,trgt[2])/2 + adjust[1], 
                                       c(i,trgt[1])/2 + adjust[2],  ...)
                             }
