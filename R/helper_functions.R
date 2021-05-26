@@ -105,9 +105,9 @@ fill_maze <- function(maze, start = NULL){
 }
 
 #################
-### convert to thick representation for plotting walls
+### convert to binary representation for plotting walls
 #################
-to_thick <- function(m){
+to_binary <- function(m){
     m2 <- matrix(NA, 2*nrow(m)+1, 2*ncol(m)+1)
     m2[,1] <- m2[,ncol(m2)] <- -5
     m2[1,] <- m2[nrow(m2),] <- -5
