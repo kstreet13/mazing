@@ -129,8 +129,8 @@ maze2binary <- function(m){
     for(i in 1:nrow(m)){
         for(j in 1:ncol(m)){
             dir <- m[i,j]
-            m2[2*i, 2*j] <- 1
-            if(dir != 0){
+            m2[2*i, 2*j] <- ifelse(dir == 0, 1, dir)
+            if(dir %in% 1:4){
                 # reverse the move that was taken to get here
                 prev <- switch(dir,
                                '1' = 2*c(i,j) + c(1,0),
@@ -142,6 +142,8 @@ maze2binary <- function(m){
         }
     }
     m2[is.na(m2)] <- 0
+    m2[m2 < 0] <- 0
+    m2[m2 > 0] <- 1
     return(m2)
 }
 
