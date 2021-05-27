@@ -15,23 +15,6 @@ every possible space, so they can take on many different shapes.
 devtools::install_github("kstreet13/mazing")
 ```
 
-## Example
-
-``` r
-library(mazing)
-
-mat <- matrix(1, nrow = 19, ncol = 75)
-mat <- cbind(0,0,0,0,mat,0,0,0,0)
-mat[10,] <- 1
-
-m <- as.maze(mat)
-plot(m, walls = TRUE)
-
-p <- solve_maze(m, start = 'left', end = 'right')
-lines(p, col = 2, lwd = 3)
-```
-
-![](man/figures/README-example-1.png)<!-- -->
 
 ## Issues and bug reports
 
