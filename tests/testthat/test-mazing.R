@@ -16,11 +16,14 @@ test_that("pathfinding works as expected", {
     p <- solve_maze(m)
     expect_true(is.matrix(p))
     
+    pts <- find_maze_refpoint(c('left','mrighttop','center'), m)
+    expect_true(all(dim(pts) == c(3,2)))
+    
     p2 <- solve_maze(m, start = c(1,1), end = c(10,10))
-    expect_identical(p, p2)
+    expect_true(all(p == p2))
     
     p3 <- solve_maze(m, start = 'mbottomleft', end = 'mrighttop')
-    expect_identical(p, p3)
+    expect_true(all(p == p2))
     
     m <- matrix(1, nrow = 10, ncol = 10)
     m <- cbind(m, 0,0,0, m)
@@ -54,6 +57,9 @@ test_that("advanced maze/matrix manipulation works", {
     m4 <- widen_paths(m2, square_corners = TRUE)
     expect_true(all(dim(m4) == dim(m2)))
     expect_true(mean(m4) > mean(m3))
+    
+    m3 <- condense_matrix(m2)
+    expect_true(all(dim(m3) == dim(m2)/2))
     
     m2[,5] <- -5
     m3 <- widen_paths(m2, blocked = -5)
