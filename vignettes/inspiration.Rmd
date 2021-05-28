@@ -29,10 +29,10 @@ plot(m, lwd = 3)
 We can also produce mazes from existing binary matrices. This allows us to create mazes in a wider variety of shapes!
 
 ```{r mcircle}
-mat <- matrix(1, 30, 30)
+mat <- matrix(1, 20, 20)
 for(i in 1:nrow(mat)){
     for(j in 1:ncol(mat)){
-        if((i-15.5)^2+(j-15.5)^2 > 220){
+        if((i-10.5)^2+(j-10.5)^2 > 100){
             mat[i,j] <- 0
         }
     }
@@ -59,10 +59,16 @@ lines(m, lwd = 3, col = 2)
 legend('topright', lwd = c(1,3), col = c(1,2), legend = c('walls','paths'), bty = 'n')
 ```
 
-We can also add an offset to shift the entire maze by a fixed vector. This can be used to create a 3D effect.
+We can also add an offset to shift the entire maze by a fixed vector. This can be used to create a 3D effect or just a funky layering effect.
 ```{r mAdjust}
-plot(m, lwd = 4)
-lines(m, lwd = 4, col = 4, adjust = c(.2,.2))
+plot(m, lwd = 8)
+lines(m, lwd = 8, col = 4, adjust = c(.2,.2))
+```
+
+```{r mAdjust2}
+plot(m, lwd=10, col = 'pink')
+lines(m, lwd=8, col = 'black', adjust = c(.2,.2))
+lines(m, lwd=6, col='turquoise', adjust = c(.4,.4))
 ```
 
 
@@ -86,8 +92,8 @@ points(endpoints, pch = 16, col = c(3,2))
 
 But we can also reference specific locations in the maze by coordinates, if it doesn't align with a reference point.
 ```{r customsolve}
-start <- c(10, 15)
-end <- c(25, 20)
+start <- c(10, 3)
+end <- c(15, 16)
 p <- solve_maze(m, start = start, end = end)
 
 plot(m, walls = TRUE)

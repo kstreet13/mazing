@@ -19,7 +19,9 @@ Suggests:
     rmarkdown,
     emojifont,
     knitr,
-    png
+    png,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 BugReports: https://github.com/kstreet13/mazing/issues
+Config/testthat/edition: 3
