@@ -9,7 +9,6 @@ test_that("basic maze functionality works", {
     m <- as.maze(m)
     expect_true(is.maze(m))
     
-    
 })
 
 test_that("pathfinding works as expected", {
@@ -42,4 +41,24 @@ test_that("advanced maze/matrix manipulation works", {
     m <- maze(10, 10)
     m <- maze2binary(m)
     expect_true(is.matrix(m))
+    expect_true(all(m %in% 0:1))
+    
+    m2 <- expand_matrix(m)
+    expect_true(all(dim(m2) == 2*dim(m)))
+    expect_true(mean(m) == mean(m2))
+    
+    m3 <- widen_paths(m2)
+    expect_true(all(dim(m3) == dim(m2)))
+    expect_true(mean(m3) > mean(m2))
+    
+    m4 <- widen_paths(m2, square_corners = TRUE)
+    expect_true(all(dim(m4) == dim(m2)))
+    expect_true(mean(m4) > mean(m3))
+    
+    m2[,5] <- -5
+    m3 <- widen_paths(m2, blocked = -5)
+    expect_true(all(dim(m3) == dim(m2)))
+    expect_equal(sum(m2 == -5), sum(m3 == -5))
+    expect_true(mean(m3) > mean(m2))
+    
 })

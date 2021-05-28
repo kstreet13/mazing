@@ -3,6 +3,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/kstreet13/mazing/workflows/R-CMD-check/badge.svg)](https://github.com/kstreet13/mazing/actions)
+[![Codecov test coverage](https://codecov.io/gh/kstreet13/mazing/branch/master/graph/badge.svg)](https://codecov.io/gh/kstreet13/mazing?branch=master)
 <!-- badges: end -->
 
 <img src=inst/mazing.png height="300">

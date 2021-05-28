@@ -20,7 +20,8 @@ Suggests:
     emojifont,
     knitr,
     png,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    covr
 VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 BugReports: https://github.com/kstreet13/mazing/issues
