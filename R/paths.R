@@ -45,6 +45,9 @@
 #' @importFrom stats median
 #' @export
 find_maze_refpoint <- function(point, maze){
+    if(length(point) > 1){
+        return(t(sapply(point, find_maze_refpoint, maze)))
+    }
     stopifnot(point %in% c('mtopleft','mtop','mtopright',
                            'mrighttop','mright','mrightbottom',
                            'mbottomright','mbottom','mbottomleft',
@@ -140,12 +143,15 @@ find_maze_refpoint <- function(point, maze){
 #' A function that finds the shortest path between points in a maze.
 #' 
 #' @param maze A \code{\link{maze}} object.
-#' @param start The matrix indices of the starting point. If not provided, this
-#'   will be as far to the left as possible (lowest column index) at the bottom
-#'   (lowest row index).
-#' @param end The matrix indices of the end point. If not provided, this will be
-#'   as far to the right as possible (highest column index) at the top (highest
-#'   row index).
+#' @param start The coordinates of the starting point. If not provided, this
+#'   will be as close as possible to the bottom left corner.
+#' @param end The coordinates of the end point. If not provided, this will be as
+#'   close as possible to the top right corner.
+#' 
+#' @details For the \code{start} and \code{end} arguments (as well as the output
+#'   matrix), these coordinates refer to the plotting coordinates, not the
+#'   matrix indices. For plotting, the x-coordinate (column index) is listed
+#'   first, whereas in matrix notation, the row (y-coordinate) is listed first.
 #' 
 #' @return A \code{matrix} containing the coordinates of the path through the
 #'   maze. Note that the x-coordinate (column index) comes first, so for the
@@ -163,10 +169,12 @@ find_maze_refpoint <- function(point, maze){
 solve_maze <- function(maze, start='bottomleft', end='topright'){
     if(is.numeric(start)){
         stopifnot(length(start) == 2)
+        start <- rev(start)
         stopifnot(maze[start[1],start[2]] != -5)
     }
     if(is.numeric(end)){
         stopifnot(length(end) == 2)
+        end <- rev(end)
         stopifnot(maze[end[1],end[2]] != -5)
     }
     if(is.character(start)){ start <- find_maze_refpoint(start, maze)[2:1] }

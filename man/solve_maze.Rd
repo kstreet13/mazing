@@ -9,13 +9,11 @@ solve_maze(maze, start = "bottomleft", end = "topright")
 \arguments{
 \item{maze}{A \code{\link{maze}} object.}
 
-\item{start}{The matrix indices of the starting point. If not provided, this
-will be as far to the left as possible (lowest column index) at the bottom
-(lowest row index).}
+\item{start}{The coordinates of the starting point. If not provided, this
+will be as close as possible to the bottom left corner.}
 
-\item{end}{The matrix indices of the end point. If not provided, this will be
-as far to the right as possible (highest column index) at the top (highest
-row index).}
+\item{end}{The coordinates of the end point. If not provided, this will be as
+close as possible to the top right corner.}
 }
 \value{
 A \code{matrix} containing the coordinates of the path through the
@@ -25,6 +23,12 @@ A \code{matrix} containing the coordinates of the path through the
 }
 \description{
 A function that finds the shortest path between points in a maze.
+}
+\details{
+For the \code{start} and \code{end} arguments (as well as the output
+  matrix), these coordinates refer to the plotting coordinates, not the
+  matrix indices. For plotting, the x-coordinate (column index) is listed
+  first, whereas in matrix notation, the row (y-coordinate) is listed first.
 }
 \examples{
 m <- maze(15,15)

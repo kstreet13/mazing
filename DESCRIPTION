@@ -15,5 +15,11 @@ Imports:
     graphics,
     methods,
     stats
+Suggests:
+    rmarkdown,
+    emojifont,
+    knitr,
+    png
+VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 BugReports: https://github.com/kstreet13/mazing/issues

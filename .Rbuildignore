@@ -1,3 +1,7 @@
+^vignettes/.*\.(html|HTML)$
+^vignettes/.*\.(r|R)$
+^vignettes/\.install_extras$
+^vignettes/.*_cache$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
