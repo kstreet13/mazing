@@ -16,8 +16,18 @@ test_that("pathfinding works as expected", {
     p <- solve_maze(m)
     expect_true(is.matrix(p))
     
-    pts <- find_maze_refpoint(c('left','mrighttop','center'), m)
-    expect_true(all(dim(pts) == c(3,2)))
+    pnames <- c('mtopleft','mtop','mtopright',
+                'mrighttop','mright','mrightbottom',
+                'mbottomright','mbottom','mbottomleft',
+                'mleftbottom','mleft','mlefttop',
+                'mcenter',
+                'topleft','top','topright',
+                'righttop','right','rightbottom',
+                'bottomright','bottom','bottomleft',
+                'leftbottom','left','lefttop',
+                'center')
+    pts <- find_maze_refpoint(pnames, m)
+    expect_true(all(dim(pts) == c(length(pnames),2)))
     
     p2 <- solve_maze(m, start = c(1,1), end = c(10,10))
     expect_true(all(p == p2))
