@@ -1,3 +1,5 @@
+set.seed(1)
+
 test_that("basic maze functionality works", {
     m <- maze(10,10)
     expect_true(is.matrix(m))
@@ -8,6 +10,8 @@ test_that("basic maze functionality works", {
     expect_false(is.maze(m))
     m <- as.maze(m)
     expect_true(is.maze(m))
+    m2 <- as.maze(m)
+    expect_identical(m, m2)
     
 })
 
@@ -35,11 +39,25 @@ test_that("pathfinding works as expected", {
     p3 <- solve_maze(m, start = 'mbottomleft', end = 'mrighttop')
     expect_true(all(p == p2))
     
+    p4 <- solve_maze(m, start = 'topright', end = 'bottomleft')
+    expect_true(all(p == p4[nrow(p4):1, ]))
+    
     m <- matrix(1, nrow = 10, ncol = 10)
     m <- cbind(m, 0,0,0, m)
     m <- as.maze(m)
     expect_error(solve_maze(m),
                  "path between 'start' and 'end' could not be found")
+    
+    # with reasonably high probability, this will hit the while() statement
+    # at the end of solve_maze
+    m <- matrix(1, nrow = 10, ncol = 10)
+    m <- rbind(0,0,m)
+    m[1,4:6] <- 1
+    m[2, 5] <- 1
+    m <- as.maze(m)
+    p <- solve_maze(m, start = 'mbottomleft', end = 'mbottomright')
+    expect_true(all(p[,1] == 4:6))
+    expect_true(all(p[,2] == 1))
 })
 
 test_that("plotting functions do not give errors", {
