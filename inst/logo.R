@@ -56,19 +56,19 @@ p <- solve_maze(m, start = 'bottom', end = 'top')
 ##########
 
 # simple
-#pdf(file = '~/Desktop/mazing_logo.pdf', width = 6, height = 6)
+pdf(file = '~/Desktop/mazing_logo.pdf', width = 6, height = 6)
 red <- RColorBrewer::brewer.pal(9,'Set1')[1]
 plot(m)
 rect(par("usr")[1], par("usr")[3], par("usr")[2], par("usr")[4], col =  "black")
 #rect(1, 12, 38, 34, col = 'black')
 lines(m, col = 'white', lwd=6, lend=2)
 lines(m, walls=TRUE, lwd=2, col='black', lend =2)
-lines(p, col = red, lwd = 1, lty = 3)
+lines(p, col = red, lwd = 1.5, lty = 3)
 r <- find_maze_refpoint('top', m)
 points(r[1], r[2], col = red, cex=.6, pch = 16)
 r <- find_maze_refpoint('bottom', m)
 points(r[1], r[2], col = red, cex=.6, pch = 16)
-#dev.off()
+dev.off()
 
 
 
