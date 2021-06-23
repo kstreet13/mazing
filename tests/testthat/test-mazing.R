@@ -13,6 +13,10 @@ test_that("basic maze functionality works", {
     m2 <- as.maze(m)
     expect_identical(m, m2)
     
+    # test return.coords (not currently used, but might want it at some point)
+    adj <- mazing:::adjacent(c(2,2), m, return.coords = TRUE)
+    expect_true(all(adj[,1] == c(3,1,2,2)))
+    expect_true(all(adj[,2] == c(2,2,1,3)))
 })
 
 test_that("pathfinding works as expected", {
@@ -84,6 +88,14 @@ test_that("plotting functions do not give errors", {
     expect_error(plot(m, walls = TRUE, openings = c('left','right'),
                       openings_direction = c('top','top','top')), 
                  'More opening directions specified')
+    # contrived mazes to hit the openings_direction = 'top' / 'bottom' 
+    # cases without specifying
+    mat <- matrix(1, nrow = 2, ncol = 3)
+    mat[1,1] <- mat[1,3] <- 0
+    m <- as.maze(mat)
+    expect_invisible(plot(m, walls = TRUE, openings = c(2,2)))
+    m <- as.maze(mat[2:1,])
+    expect_invisible(plot(m, walls = TRUE, openings = c(2,1)))
 })
 
 test_that("advanced maze/matrix manipulation works", {

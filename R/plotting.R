@@ -63,8 +63,9 @@ lines.maze <- function(x, walls = FALSE, adjust = c(0,0),
         MAZE <- maze2binary(x)
         if(!is.null(openings)){
             op <- 2 * matrix(find_maze_refpoint(openings, x), ncol = 2)
+            n.op <- nrow(op)
             if(is.null(openings_direction)){
-                openings_direction <- sapply(seq_along(openings), function(i){
+                openings_direction <- sapply(seq_len(n.op), function(i){
                     poss <- which(adjacent(op[i,2:1], MAZE) == 0)
                     if(2 %in% poss) return('left')
                     if(4 %in% poss) return('right')
@@ -72,31 +73,31 @@ lines.maze <- function(x, walls = FALSE, adjust = c(0,0),
                     if(1 %in% poss) return('bottom')
                 })
             }
-            if(length(openings_direction) > nrow(op)){
+            if(length(openings_direction) > n.op){
                 stop('More opening directions specified (',
                      length(openings_direction),
-                     ') than openings (', nrow(op), ')')
+                     ') than openings (', n.op, ')')
             }
-            if(length(openings_direction) < nrow(op)){
+            if(length(openings_direction) < n.op){
                 openings_direction <- rep(openings_direction, 
-                                          length.out = nrow(op))
+                                          length.out = n.op)
             }
-            for(i in seq_along(openings)){
+            for(i in seq_len(n.op)){
                 if(openings_direction[i] %in% c('left','topleft',
                                           'bottomleft','all')){
-                    MAZE[op[i,2], op[i,1]-1] <- 1
+                    MAZE[op[i,2], op[i,1]-1] <- -1
                 }
                 if(openings_direction[i] %in% c('right','topright',
                                           'bottomright','all')){
-                    MAZE[op[i,2], op[i,1]+1] <- 1
+                    MAZE[op[i,2], op[i,1]+1] <- -1
                 }
                 if(openings_direction[i] %in% c('top','topleft',
                                           'topright','all')){
-                    MAZE[op[i,2]+1, op[i,1]] <- 1
+                    MAZE[op[i,2]+1, op[i,1]] <- -1
                 }
                 if(openings_direction[i] %in% c('bottom','bottomright',
                                           'bottomleft','all')){
-                    MAZE[op[i,2]-1, op[i,1]] <- 1
+                    MAZE[op[i,2]-1, op[i,1]] <- -1
                 }
             }
             
@@ -106,7 +107,7 @@ lines.maze <- function(x, walls = FALSE, adjust = c(0,0),
                 if(MAZE[i,j] == 0){
                     adj <- adjacent(c(i,j), MAZE)
                     vals <- adj[!is.na(adj)]
-                    if(any(vals != 0)){
+                    if(any(vals == 1)){
                         draw <- which(adj == 0)
                         for(dir in draw){
                             trgt <- switch(dir,
@@ -116,12 +117,12 @@ lines.maze <- function(x, walls = FALSE, adjust = c(0,0),
                                            '4' = c(i,j) + c(0,1))  # position, not name
                             tadj <- c(adjacent(trgt, MAZE), diag_adj_vals(trgt, MAZE))
                             tvals <- tadj[!is.na(tadj)]
-                            if(any(tvals != 0)){
+                            if(any(tvals == 1)){
                                 lines(c(j,trgt[2])/2 + adjust[1], 
                                       c(i,trgt[1])/2 + adjust[2],  ...)
                             }
                         }
-                        MAZE[i,j] <- 0
+                        MAZE[i,j] <- -1
                     }
                 }
             }
