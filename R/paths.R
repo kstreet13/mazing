@@ -60,8 +60,6 @@ find_maze_refpoint <- function(point, maze){
         colnames(point) <- c('col','row')
         return(point)
     }
-    if(is.matrix(point) & is.numeric(point)){
-    }
     if(length(point) > 1){
         return(t(sapply(point, find_maze_refpoint, maze)))
     }

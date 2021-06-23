@@ -5,3 +5,4 @@ vignettes/*_cache
 .DS_Store
 *.Rproj
 inst/doc
+tests/testthat/Rplots.pdf
