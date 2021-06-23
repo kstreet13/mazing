@@ -9,11 +9,13 @@ solve_maze(maze, start = "bottomleft", end = "topright")
 \arguments{
 \item{maze}{A \code{\link{maze}} object.}
 
-\item{start}{The coordinates of the starting point. If not provided, this
-will be as close as possible to the bottom left corner.}
+\item{start}{The coordinates of the starting point, or a description of a
+relative location (see \code{\link{find_maze_refpoint}}). If not provided,
+this will be as close as possible to the bottom left corner.}
 
-\item{end}{The coordinates of the end point. If not provided, this will be as
-close as possible to the top right corner.}
+\item{end}{The coordinates of the end point, or a description of a relative
+location (see \code{\link{find_maze_refpoint}}). If not provided, this will
+be as close as possible to the top right corner.}
 }
 \value{
 A \code{matrix} containing the coordinates of the path through the

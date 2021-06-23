@@ -12,7 +12,7 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 library(mazing)
-par(mar=c(0,0,0,0))
+oldpar <- par(mar=c(0,0,0,0))
 ```
 
 Hi! Thanks for checking out the `mazing` package! In this document, I'll provide examples of some of the things you can do with the package and hopefully inspire you to make some cool mazes of your own.
@@ -59,6 +59,22 @@ lines(m, lwd = 3, col = 2)
 legend('topright', lwd = c(1,3), col = c(1,2), legend = c('walls','paths'), bty = 'n')
 ```
 
+### Openings
+Sometimes, we may want to leave an opening in a wall to indicate the entrance and exit to a maze. When plotting the walls of the maze, we can specify a section of wall to omit by using the `openings` and `openings_direction` arguments. The first gives a location in the maze and the latter indicates which wall we want to omit, relative to that location. For example:
+```{r openings}
+plot(m, walls = TRUE, openings = c('left','right'),
+     openings_direction = c('left','right'))
+```
+
+With a little creativity, we can also use this to create a larger open area in the middle of the maze (you know, for the minotaur):
+```{r openings2}
+lair <- matrix(c(10,10,11,11, 10,11,10,11), ncol = 2)
+plot(m, walls = TRUE, openings = lair, openings_direction = 'all')
+points(10.5,10.5, pch = 6, col = 'brown')
+points(10.5,10.5, pch = 20, col = 'brown')
+```
+
+### Adjustments
 We can also add an offset to shift the entire maze by a fixed vector. This can be used to create a 3D effect or just a funky layering effect.
 ```{r mAdjust}
 plot(m, lwd = 8)
@@ -146,6 +162,9 @@ lines(m, lwd = 3, col = 'white', lend = 2)
 ```
 
 ## Session Info
+```{r reset, echo=FALSE}
+par(oldpar)
+```
 
 ```{r info}
 sessionInfo()

@@ -1,6 +1,6 @@
 Package: mazing
 Title: Utilities for Making and Plotting Mazes
-Version: 1.0.1
+Version: 1.0.3
 Authors@R:
     person(given = "Kelly", 
            family = "Street", 

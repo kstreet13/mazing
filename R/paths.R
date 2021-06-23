@@ -30,10 +30,16 @@
 #' before selecting the left-most point in that row. Note that this means values
 #' such as \code{"mtopleft"} and \code{"mlefttop"} are not synonymous.
 #' 
-#' @return A integer vector of length 2, giving the coordinates of the desired
-#'   point. Note that the x-coordinate (column index) comes first, so for the
-#'   corresponding index in the original matrix, these coordinates will need to
-#'   be reversed.
+#' @details For convenience, if \code{point} is a 2-column matrix or numeric
+#'   vector that can be coerced into a 2-column matrix, it will be returned as
+#'   such, with minor formatting changes to match the usual output. This is so
+#'   that functions which rely on \code{find_maze_refpoint} can use either
+#'   relative descriptions or exact coordinates.
+#' 
+#' @return A matrix of integers with 2 columns, giving the coordinates of the
+#'   desired point(s). Note that the x-coordinate (column index) comes first, so
+#'   for the corresponding index in the original matrix, these coordinates will
+#'   need to be reversed.
 #'   
 #' @examples
 #' m <- maze(15,15)
@@ -45,6 +51,17 @@
 #' @importFrom stats median
 #' @export
 find_maze_refpoint <- function(point, maze){
+    if(is.numeric(point)){
+        if(is.matrix(point)){
+            stopifnot(ncol(point) == 2)
+        }else{
+            point <- matrix(point, ncol = 2)
+        }
+        colnames(point) <- c('col','row')
+        return(point)
+    }
+    if(is.matrix(point) & is.numeric(point)){
+    }
     if(length(point) > 1){
         return(t(sapply(point, find_maze_refpoint, maze)))
     }
@@ -143,10 +160,12 @@ find_maze_refpoint <- function(point, maze){
 #' A function that finds the shortest path between points in a maze.
 #' 
 #' @param maze A \code{\link{maze}} object.
-#' @param start The coordinates of the starting point. If not provided, this
-#'   will be as close as possible to the bottom left corner.
-#' @param end The coordinates of the end point. If not provided, this will be as
-#'   close as possible to the top right corner.
+#' @param start The coordinates of the starting point, or a description of a
+#'   relative location (see \code{\link{find_maze_refpoint}}). If not provided,
+#'   this will be as close as possible to the bottom left corner.
+#' @param end The coordinates of the end point, or a description of a relative
+#'   location (see \code{\link{find_maze_refpoint}}). If not provided, this will
+#'   be as close as possible to the top right corner.
 #' 
 #' @details For the \code{start} and \code{end} arguments (as well as the output
 #'   matrix), these coordinates refer to the plotting coordinates, not the

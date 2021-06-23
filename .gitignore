@@ -1,4 +1,4 @@
-^vignettes/.*_cache$
+vignettes/*_cache
 .Rproj.user
 .Rhistory
 .RData

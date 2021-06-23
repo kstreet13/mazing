@@ -33,6 +33,16 @@ test_that("pathfinding works as expected", {
     pts <- find_maze_refpoint(pnames, m)
     expect_true(all(dim(pts) == c(length(pnames),2)))
     
+    pts <- find_maze_refpoint(c(1,2), m)
+    expect_true(is.matrix(pts))
+    expect_equal(ncol(pts), 2)
+    expect_true(all(pts[,] == 1:2))
+    
+    pts <- find_maze_refpoint(matrix(1:4, 2), m)
+    expect_true(is.matrix(pts))
+    expect_equal(ncol(pts), 2)
+    expect_true(all(pts[,] == 1:4))
+    
     p2 <- solve_maze(m, start = c(1,1), end = c(10,10))
     expect_true(all(p == p2))
     
@@ -66,6 +76,14 @@ test_that("plotting functions do not give errors", {
     expect_invisible(plot(m, walls = TRUE))
     expect_invisible(plot(m, adjust = c(.5,.5)))
     expect_invisible(plot(m, walls = TRUE, adjust = c(.5,.5)))
+    expect_invisible(plot(m, walls = TRUE, openings = c('left','right')))
+    expect_invisible(plot(m, walls = TRUE, openings = c('left','right'),
+                          openings_direction = c('topleft','bottomright')))
+    expect_invisible(plot(m, walls = TRUE, openings = c('left','right'),
+                          openings_direction = 'all'))
+    expect_error(plot(m, walls = TRUE, openings = c('left','right'),
+                      openings_direction = c('top','top','top')), 
+                 'More opening directions specified')
 })
 
 test_that("advanced maze/matrix manipulation works", {

@@ -7,7 +7,14 @@
 \usage{
 \method{plot}{maze}(x, walls = FALSE, ...)
 
-\method{lines}{maze}(x, walls = FALSE, adjust = c(0, 0), ...)
+\method{lines}{maze}(
+  x,
+  walls = FALSE,
+  adjust = c(0, 0),
+  openings = NULL,
+  openings_direction = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{\link{maze}} object.}
@@ -20,6 +27,17 @@ plotted, rather than the paths through the maze. Default is \code{FALSE}.}
 \item{adjust}{A vector by which to adjust the overall position of the maze.
 Should be a numeric vector of length 2, indicating the \code{x} and
 \code{y} adjustments, respectively.}
+
+\item{openings}{Locations in the maze where a certain wall(s) should not be
+drawn (only applies when \code{walls = TRUE}). May be specified as
+coordinates, or as a relative description (see
+\code{\link{find_maze_refpoint}})}
+
+\item{openings_direction}{Character vector describing which walls should not
+be drawn at the locations specified by \code{openings}. See Details.}
+}
+\value{
+Returns \code{NULL}, invisibly.
 }
 \description{
 Plot a maze object
@@ -29,6 +47,15 @@ When plotting, the coordinates for locations in the maze are taken from the
 indices of the corresponding locations in the matrix representation. This
 means that the plot will appear to be flipped vertically relative to the
 matrix representation of the maze.
+
+The \code{openings_direction} argument specifies where to create an
+  opening (ie. where not to draw walls), relative to a location in the maze
+  given by \code{openings}. Possible values are: \code{"left"},
+  \code{"right"}, \code{"top"}, \code{"bottom"}, \code{"topleft"},
+  \code{"topright"}, \code{"bottomright"}, \code{"bottomleft"}, and
+  \code{"all"}. If not specified, this will be set as the first value in
+  \code{c("left","right","top","bottom")} to reference a wall that would
+  otherwise have been drawn.
 }
 \examples{
 m <- maze(10,10)
