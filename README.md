@@ -16,6 +16,10 @@ every possible space, so they can take on many different shapes.
 ## Installation
 
 ``` r
+# stable, release version from CRAN:
+install.packages("mazing")
+
+# devel version from GitHub:
 # install.packages("devtools")
 devtools::install_github("kstreet13/mazing")
 ```
