@@ -19,6 +19,7 @@ Suggests:
     rmarkdown,
     emojifont,
     knitr,
+    markdown,
     png,
     testthat (>= 3.0.0),
     covr
