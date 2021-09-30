@@ -106,7 +106,9 @@ test_that("advanced maze/matrix manipulation works", {
     
     m2 <- expand_matrix(m)
     expect_true(all(dim(m2) == 2*dim(m)))
-    expect_true(mean(m) == mean(m2))
+    eps <- ifelse(capabilities("long.double"),
+                  sqrt(.Machine$double.eps), 0.1)
+    expect_equal(mean(m), mean(m2), tolerance = eps)
     
     m3 <- widen_paths(m2)
     expect_true(all(dim(m3) == dim(m2)))
