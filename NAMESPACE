@@ -2,6 +2,7 @@
 
 S3method(lines,maze)
 S3method(plot,maze)
+S3method(print,maze)
 export(as.maze)
 export(condense_matrix)
 export(expand_matrix)
@@ -15,3 +16,4 @@ importFrom(graphics,lines)
 importFrom(methods,as)
 importFrom(methods,is)
 importFrom(stats,median)
+importFrom(utils,packageVersion)

@@ -74,8 +74,12 @@ test_that("pathfinding works as expected", {
     expect_true(all(p[,2] == 1))
 })
 
-test_that("plotting functions do not give errors", {
+test_that("plotting and printing functions do not give errors", {
     m <- maze(10, 10)
+    
+    expect_invisible(print(m))
+    # can't find a way to test this and the matrix print method
+
     expect_invisible(plot(m))
     expect_invisible(plot(m, walls = TRUE))
     expect_invisible(plot(m, adjust = c(.5,.5)))

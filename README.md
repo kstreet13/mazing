@@ -2,8 +2,8 @@
 # mazing
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/kstreet13/mazing/workflows/R-CMD-check/badge.svg)](https://github.com/kstreet13/mazing/actions)
-[![Codecov test coverage](https://codecov.io/gh/kstreet13/mazing/branch/master/graph/badge.svg)](https://codecov.io/gh/kstreet13/mazing?branch=master)
+[![R-CMD-check](https://github.com/kstreet13/mazing/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kstreet13/mazing/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/kstreet13/mazing/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/kstreet13/mazing/actions/workflows/test-coverage.yaml)
 <!-- badges: end -->
 
 <img src=inst/mazing.png height="300">

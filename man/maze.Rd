@@ -55,3 +55,6 @@ for(i in 1:nrow(mat)){
 m <- as.maze(mat)
 
 }
+\seealso{
+[print.maze()]
+}
