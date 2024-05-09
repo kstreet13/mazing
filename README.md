@@ -4,6 +4,7 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/kstreet13/mazing/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kstreet13/mazing/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/kstreet13/mazing/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/kstreet13/mazing/actions/workflows/test-coverage.yaml)
+[![codecov](https://codecov.io/gh/kstreet13/mazing/graph/badge.svg?token=sku2RgPoiM)](https://codecov.io/gh/kstreet13/mazing)
 <!-- badges: end -->
 
 <img src=inst/mazing.png height="300">
