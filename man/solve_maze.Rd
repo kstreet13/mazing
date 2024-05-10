@@ -19,18 +19,18 @@ be as close as possible to the top right corner.}
 }
 \value{
 A \code{matrix} containing the coordinates of the path through the
-  maze. Note that the x-coordinate (column index) comes first, so for the
-  corresponding indices in the original matrix, these coordinates will need
-  to be reversed.
+maze. Note that the x-coordinate (column index) comes first, so for the
+corresponding indices in the original matrix, these coordinates will need
+to be reversed.
 }
 \description{
 A function that finds the shortest path between points in a maze.
 }
 \details{
 For the \code{start} and \code{end} arguments (as well as the output
-  matrix), these coordinates refer to the plotting coordinates, not the
-  matrix indices. For plotting, the x-coordinate (column index) is listed
-  first, whereas in matrix notation, the row (y-coordinate) is listed first.
+matrix), these coordinates refer to the plotting coordinates, not the
+matrix indices. For plotting, the x-coordinate (column index) is listed
+first, whereas in matrix notation, the row (y-coordinate) is listed first.
 }
 \examples{
 m <- maze(15,15)

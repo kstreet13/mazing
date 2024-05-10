@@ -33,8 +33,8 @@ Functions for producing and identifying procedurally generated random mazes.
 }
 \details{
 For \code{as.maze}, if \code{x} is a binary matrix (or otherwise
-  contains only two unique values), the maze will be constrained to occupy
-  only those cells containing a 1 (the higher value).
+contains only two unique values), the maze will be constrained to occupy
+only those cells containing a 1 (the higher value).
 }
 \examples{
 maze(10,10)
@@ -56,5 +56,5 @@ m <- as.maze(mat)
 
 }
 \seealso{
-[print.maze()]
+\code{\link[=print.maze]{print.maze()}}
 }

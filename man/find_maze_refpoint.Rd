@@ -15,9 +15,9 @@ values.}
 }
 \value{
 A matrix of integers with 2 columns, giving the coordinates of the
-  desired point(s). Note that the x-coordinate (column index) comes first, so
-  for the corresponding index in the original matrix, these coordinates will
-  need to be reversed.
+desired point(s). Note that the x-coordinate (column index) comes first, so
+for the corresponding index in the original matrix, these coordinates will
+need to be reversed.
 }
 \description{
 A function that takes a description of a point in a maze and finds the matrix
@@ -44,10 +44,10 @@ before selecting the left-most point in that row. Note that this means values
 such as \code{"mtopleft"} and \code{"mlefttop"} are not synonymous.
 
 For convenience, if \code{point} is a 2-column matrix or numeric
-  vector that can be coerced into a 2-column matrix, it will be returned as
-  such, with minor formatting changes to match the usual output. This is so
-  that functions which rely on \code{find_maze_refpoint} can use either
-  relative descriptions or exact coordinates.
+vector that can be coerced into a 2-column matrix, it will be returned as
+such, with minor formatting changes to match the usual output. This is so
+that functions which rely on \code{find_maze_refpoint} can use either
+relative descriptions or exact coordinates.
 }
 \examples{
 m <- maze(15,15)
