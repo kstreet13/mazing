@@ -30,8 +30,8 @@ Display a \code{maze} object.
 }
 \details{
 If the \code{\link[bittermelon]{bittermelon}} package is available,
-  \code{print.maze} prints a representation of the maze az a bitmap object.
-  Otherwise, it prints the matrix representation.
+\code{print.maze} prints a representation of the maze as a bitmap object.
+Otherwise, it prints the matrix representation.
 }
 \examples{
 m <- maze(10,10)

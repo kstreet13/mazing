@@ -102,7 +102,7 @@ as.maze <- function(x){
 #'   package is available.
 #' 
 #' @details If the \code{\link[bittermelon]{bittermelon}} package is available,
-#'   \code{print.maze} prints a representation of the maze az a bitmap object.
+#'   \code{print.maze} prints a representation of the maze as a bitmap object.
 #'   Otherwise, it prints the matrix representation.
 #' 
 #' @examples 

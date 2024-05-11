@@ -22,9 +22,9 @@ original values.
 }
 \details{
 This function can be used for image manipulation and is included for
-  the purpose of making mazes from images. PNG images can be read in as
-  arrays via \code{png::readPNG} and if the image is too big, this funtion
-  can help get it down to a more manageable size.
+the purpose of making mazes from images. PNG images can be read in as
+arrays via \code{png::readPNG} and if the image is too big, this funtion
+can help get it down to a more manageable size.
 }
 \examples{
 m <- outer(1:4, 1:6)

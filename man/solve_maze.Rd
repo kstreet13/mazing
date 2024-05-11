@@ -4,7 +4,7 @@
 \alias{solve_maze}
 \title{Find a path through a maze}
 \usage{
-solve_maze(maze, start = "bottomleft", end = "topright")
+solve_maze(maze, start = "bottomleft", end = "topright", by = 1)
 }
 \arguments{
 \item{maze}{A \code{\link{maze}} object.}
@@ -16,21 +16,26 @@ this will be as close as possible to the bottom left corner.}
 \item{end}{The coordinates of the end point, or a description of a relative
 location (see \code{\link{find_maze_refpoint}}). If not provided, this will
 be as close as possible to the top right corner.}
+
+\item{by}{Distance between coordinates of the path through the maze.
+Either \code{1} (original default),
+\code{0.5} (better for plotting a path of points/squares), or
+\code{Inf} (most efficient for plotting a path of orthogonal lines).}
 }
 \value{
 A \code{matrix} containing the coordinates of the path through the
-  maze. Note that the x-coordinate (column index) comes first, so for the
-  corresponding indices in the original matrix, these coordinates will need
-  to be reversed.
+maze. Note that the x-coordinate (column index) comes first, so for the
+corresponding indices in the original matrix, these coordinates will need
+to be reversed.
 }
 \description{
 A function that finds the shortest path between points in a maze.
 }
 \details{
 For the \code{start} and \code{end} arguments (as well as the output
-  matrix), these coordinates refer to the plotting coordinates, not the
-  matrix indices. For plotting, the x-coordinate (column index) is listed
-  first, whereas in matrix notation, the row (y-coordinate) is listed first.
+matrix), these coordinates refer to the plotting coordinates, not the
+matrix indices. For plotting, the x-coordinate (column index) is listed
+first, whereas in matrix notation, the row (y-coordinate) is listed first.
 }
 \examples{
 m <- maze(15,15)

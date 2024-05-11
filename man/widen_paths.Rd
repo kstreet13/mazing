@@ -29,12 +29,12 @@ widen the paths of the maze (subsequently narrowing the walls).
 }
 \details{
 The idea of this function is to let the paths of a maze "seep" into
-  the walls. For making a maze-within-a-maze, the walls of the big maze are
-  generally not as interesting as the paths, which contain smaller paths.
-  Hence why we might want to make the paths wider than the walls. Remember
-  that this will affect walls from both sides, so it is necessary to expand
-  the matrix twice (via \code{\link{expand_matrix}}) before widening the
-  paths for the first time.
+the walls. For making a maze-within-a-maze, the walls of the big maze are
+generally not as interesting as the paths, which contain smaller paths.
+Hence why we might want to make the paths wider than the walls. Remember
+that this will affect walls from both sides, so it is necessary to expand
+the matrix twice (via \code{\link{expand_matrix}}) before widening the
+paths for the first time.
 }
 \examples{
 m <- matrix(0, nrow = 5, ncol = 5)

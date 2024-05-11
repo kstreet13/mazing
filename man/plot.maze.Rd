@@ -49,13 +49,13 @@ means that the plot will appear to be flipped vertically relative to the
 matrix representation of the maze.
 
 The \code{openings_direction} argument specifies where to create an
-  opening (ie. where not to draw walls), relative to a location in the maze
-  given by \code{openings}. Possible values are: \code{"left"},
-  \code{"right"}, \code{"top"}, \code{"bottom"}, \code{"topleft"},
-  \code{"topright"}, \code{"bottomright"}, \code{"bottomleft"}, and
-  \code{"all"}. If not specified, this will be set as the first value in
-  \code{c("left","right","top","bottom")} to reference a wall that would
-  otherwise have been drawn.
+opening (ie. where not to draw walls), relative to a location in the maze
+given by \code{openings}. Possible values are: \code{"left"},
+\code{"right"}, \code{"top"}, \code{"bottom"}, \code{"topleft"},
+\code{"topright"}, \code{"bottomright"}, \code{"bottomleft"}, and
+\code{"all"}. If not specified, this will be set as the first value in
+\code{c("left","right","top","bottom")} to reference a wall that would
+otherwise have been drawn.
 }
 \examples{
 m <- maze(10,10)
