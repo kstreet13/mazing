@@ -75,31 +75,52 @@ test_that("pathfinding works as expected", {
 })
 
 test_that("plotting and printing functions do not give errors", {
-    m <- maze(10, 10)
-    
-    expect_invisible(print(m))
-    # can't find a way to test this and the matrix print method
+    skip_if_not_installed("withr")
+    withr::with_seed(42, m <- maze(10, 10))
 
-    expect_invisible(plot(m))
-    expect_invisible(plot(m, walls = TRUE))
-    expect_invisible(plot(m, adjust = c(.5,.5)))
-    expect_invisible(plot(m, walls = TRUE, adjust = c(.5,.5)))
-    expect_invisible(plot(m, walls = TRUE, openings = c('left','right')))
-    expect_invisible(plot(m, walls = TRUE, openings = c('left','right'),
-                          openings_direction = c('topleft','bottomright')))
-    expect_invisible(plot(m, walls = TRUE, openings = c('left','right'),
-                          openings_direction = 'all'))
+    # Avoid any side effects if tester has 0--2 previously open graphic devices
+    current_dev <- grDevices::dev.cur()
+    grDevices::pdf(f <- tempfile(fileext = ".pdf"))
     expect_error(plot(m, walls = TRUE, openings = c('left','right'),
                       openings_direction = c('top','top','top')), 
                  'More opening directions specified')
+    grDevices::dev.off()
+    unlink(f)
+    if (current_dev > 1)  {
+        grDevices::dev.set(current_dev)
+    }
+
+    skip_if_not_installed("vdiffr", "1.0.7")
+    vdiffr::expect_doppelganger("plot", function() plot(m))
+    vdiffr::expect_doppelganger("walls", function() plot(m, walls = TRUE))
+    vdiffr::expect_doppelganger("adjust", function() plot(m, adjust = c(.5,.5)))
+    vdiffr::expect_doppelganger("walls_adjust", function()
+        plot(m, walls = TRUE, adjust = c(.5,.5)))
+    vdiffr::expect_doppelganger("walls_openings", function()
+        plot(m, walls = TRUE, openings = c('left','right')))
+    vdiffr::expect_doppelganger("openings_topleft_bottomright", function()
+        plot(m, walls = TRUE, openings = c('left','right'),
+             openings_direction = c('topleft','bottomright')))
+    vdiffr::expect_doppelganger("openings_all", function()
+        plot(m, walls = TRUE, openings = c('left','right'),
+             openings_direction = 'all'))
     # contrived mazes to hit the openings_direction = 'top' / 'bottom' 
     # cases without specifying
     mat <- matrix(1, nrow = 2, ncol = 3)
     mat[1,1] <- mat[1,3] <- 0
     m <- as.maze(mat)
-    expect_invisible(plot(m, walls = TRUE, openings = c(2,2)))
+    vdiffr::expect_doppelganger("contrived1", function() plot(m, walls = TRUE, openings = c(2,2)))
     m <- as.maze(mat[2:1,])
-    expect_invisible(plot(m, walls = TRUE, openings = c(2,1)))
+    vdiffr::expect_doppelganger("contrived2", function() plot(m, walls = TRUE, openings = c(2,1)))
+})
+
+test_that("printing method works", {
+    skip_if_not_installed("bittermelon", "1.2.0-3")
+    skip_if_not_installed("withr")
+    withr::with_seed(42, x <- maze(13, 13))
+    verify_output("output/print_ascii.txt", print(x), unicode = FALSE)
+    skip_if_not(l10n_info()[["UTF-8"]])
+    verify_output("output/print_unicode.txt", print(x), unicode = TRUE)
 })
 
 test_that("advanced maze/matrix manipulation works", {
@@ -130,5 +151,4 @@ test_that("advanced maze/matrix manipulation works", {
     expect_true(all(dim(m3) == dim(m2)))
     expect_equal(sum(m2 == -5), sum(m3 == -5))
     expect_true(mean(m3) > mean(m2))
-    
 })

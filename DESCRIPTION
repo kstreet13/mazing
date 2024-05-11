@@ -24,6 +24,8 @@ Suggests:
     markdown,
     png,
     testthat (>= 3.0.0),
+    vdiffr,
+    withr,
     covr
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
