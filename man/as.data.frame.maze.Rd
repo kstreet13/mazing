@@ -8,7 +8,7 @@
   x,
   ...,
   walls = FALSE,
-  method = c("geom_point", "geom_path", "geom_tile"),
+  method = c("geom_point", "geom_path", "geom_segment", "geom_text", "geom_tile"),
   start = NULL,
   end = NULL
 )
@@ -21,30 +21,34 @@
 \item{walls}{logical value, indicating that the walls of the maze should be
 plotted, rather than the paths through the maze. Default is \code{FALSE}.}
 
-\item{method}{Target \code{grid} or \code{ggplot2} plotting method as a string.
-Some \code{method} values may only work for either the maze object or its solution.}
+\item{method}{Target \code{ggplot2} plotting method as a string.
+Some \code{method} values may only work for either the maze object or its solution
+i.e. \code{method = "geom_path"} only works for the solution.}
 
 \item{start, end}{The coordinates of the starting and ending points of a path
 through the maze, or descriptions of relative locations (eg.
 \code{"topleft"}, see \code{\link[=find_maze_refpoint]{find_maze_refpoint()}}. If not provided, no path will be drawn.}
 }
 \value{
-A data frame.
+A data frame with data for either plotting the maze's path, mazes's wall (if \code{wall = TRUE}),
+or the maze's solution (if \code{start} and \code{end} are not \code{NULL}) with the \code{ggplot2}
+method indicated by \code{method}.
 }
 \description{
 \code{\link[=as.data.frame]{as.data.frame()}} methods to coerce \code{\link[=maze]{maze()}} objects
 or their solutions into data frames suitable for plotting with
-\code{grid} or \code{ggplot2} graphics systems.
+the \code{ggplot2} graphics systems.
 }
 \examples{
 x <- maze(12L, 12L)
-dfw <- as.data.frame(x, walls = TRUE)
-dfs <- as.data.frame(x, start = "top", end = "bottom")
+dfw <- as.data.frame(x, walls = TRUE, method = "geom_tile")
+dfs <- as.data.frame(x, start = "top", end = "bottom", method = "geom_path")
 if (require("ggplot2", quietly = TRUE)) {
    ggplot(dfw, aes(x, y)) + geom_tile() + coord_equal() + theme_void() + 
    geom_path(aes(x=x, y=y), colour = "red", linewidth = 2, data = dfs)
 }
 }
 \seealso{
-\code{\link[=plot.maze]{plot.maze()}}, \code{\link[grid:grid.points]{grid::pointsGrob()}}
+\code{\link[=plot.maze]{plot.maze()}}, \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}, \code{\link[ggplot2:geom_path]{ggplot2::geom_path()}},
+\code{\link[ggplot2:geom_text]{ggplot2::geom_text()}}, \code{\link[ggplot2:geom_tile]{ggplot2::geom_tile()}}
 }

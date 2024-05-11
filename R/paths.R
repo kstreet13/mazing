@@ -164,6 +164,10 @@ find_maze_refpoint <- function(point, maze){
 #' @param end The coordinates of the end point, or a description of a relative
 #'   location (see \code{\link{find_maze_refpoint}}). If not provided, this will
 #'   be as close as possible to the top right corner.
+#' @param by Distance between coordinates of the path through the maze.
+#'           Either `1` (original default),
+#'           `0.5` (better for plotting a path of points/squares), or
+#'           `Inf` (most efficient for plotting a path of orthogonal lines).
 #' 
 #' @details For the \code{start} and \code{end} arguments (as well as the output
 #'   matrix), these coordinates refer to the plotting coordinates, not the
@@ -183,7 +187,39 @@ find_maze_refpoint <- function(point, maze){
 #' lines(p, col = 2, lwd = 3)
 #' 
 #' @export
-solve_maze <- function(maze, start='bottomleft', end='topright'){
+solve_maze <- function(maze, start='bottomleft', end='topright', by=1) {
+    stopifnot(by == 1 || by == 0.5 || by == Inf)
+    path <- solve_maze_helper(maze, start, end)
+
+    if (by == 0.5 && nrow(path) > 1L) {
+        path2 <- matrix(0, nrow = 2 * nrow(path) - 1, ncol = 2L)
+        path2[seq.int(1, 2 * nrow(path) - 1, 2), 1] <- path[, 1]
+        path2[seq.int(1, 2 * nrow(path) - 1, 2), 2] <- path[, 2]
+        for (i in seq_len(nrow(path) - 1)) {
+            path2[2 * i, 1] <- mean(path[c(i, i+1), 1])
+            path2[2 * i, 2] <- mean(path[c(i, i+1), 2])
+        }
+        path <- path2
+    } else if (by == Inf && nrow(path) > 2L) {
+        idx_to_remove <- integer()
+        for (i in seq.int(2L, nrow(path) - 1L)) {
+            three_in_a_col <- (path[i - 1L, 1L] == path[i, 1L]) &&
+                (path[i, 1L] == path[i + 1L, 1L])
+            three_in_a_row <- (path[i - 1L, 2L] == path[i, 2L]) &&
+                (path[i, 2L] == path[i + 1L, 2L])
+            if (three_in_a_col || three_in_a_row)
+                idx_to_remove <- append(idx_to_remove, i)
+        }
+        if (length(idx_to_remove) > 0L)
+            path <- path[-idx_to_remove, ]
+    }
+
+    rownames(path) <- NULL
+    colnames(path) <- c('col', 'row')
+    return(path)
+}
+
+solve_maze_helper <- function(maze, start='bottomleft', end='topright') {
     if(is.numeric(start)){
         stopifnot(length(start) == 2)
         start <- rev(start)
